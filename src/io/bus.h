@@ -57,7 +57,7 @@
 // Selects a component on the bus by sending the address to the decoder and then
 // enabling the decoder's outputs
 #define bus_select(ADDRESS)                             \
-    PORTB = BUS_EN_m | (PORTB & ~ADDR_m) | ((ADDRESS) << ADDR_p);	\
+    PORTB = BUS_EN_m | (PORTB & ~ADDR_m) | ((ADDRESS) << ADDR_p);   \
 
 // Deactivates the currently selected component by deactivating the decoder's
 // output
@@ -66,7 +66,7 @@
 
 // Puts VAL on the bus
 #define bus_write(VAL)                                          \
-    PORTC = (PORTC & ~DATA_PORTC_m) | ((VAL) & DATA_PORTC_m);	\
+    PORTC = (PORTC & ~DATA_PORTC_m) | ((VAL) & DATA_PORTC_m);   \
     PORTD = (PORTD & ~DATA_PORTD_m) | ((VAL) & DATA_PORTD_m)
 
 // Reads from the bus

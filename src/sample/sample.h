@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -20,7 +20,7 @@
 
   Sample system
 
-  Contains functions for writing and reading samples to and from SRAM memory.   
+  Contains functions for writing and reading samples to and from SRAM memory.
 */
 
 
@@ -33,16 +33,16 @@
 #define SAMPLE_TYPE_DPCM 1
 
 struct sample {
-  uint8_t type;
-  uint32_t size;
-    
-  // Internal
-  uint16_t current_block;
-  uint16_t current_position;
-  uint32_t bytes_done;
-  uint16_t first_block;
+    uint8_t type;
+    uint32_t size;
 
-  struct memory_context mem_ctx;
+    // Internal
+    uint16_t current_block;
+    uint16_t current_position;
+    uint32_t bytes_done;
+    uint16_t first_block;
+
+    struct memory_context mem_ctx;
 };
 
 void sample_clear_all(void);

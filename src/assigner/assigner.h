@@ -25,10 +25,15 @@
 
 
 #pragma once
+
 #include <stdint.h>
 #include <stdbool.h>
 
-uint16_t note_to_period(uint8_t channel, uint8_t note);
+enum assigner_mode {
+    MONO,
+    POLY,
+};
+
 void play_note(uint8_t channel, uint8_t note);
 void stop_note(uint8_t channel);
 
@@ -37,11 +42,6 @@ void assigner_notify_note_on(uint8_t midi_channel, uint8_t note);
 void assigner_notify_note_off(uint8_t midi_channel, uint8_t note);
 void assigner_midi_channel_change(uint8_t midi_channel, uint8_t chn);
 uint8_t assigner_midi_channel_get(uint8_t chn);
-
-enum assigner_mode {
-    MONO,
-    POLY,
-};
 
 extern enum assigner_mode assigner_lower_mode;
 extern enum assigner_mode assigner_upper_mode;

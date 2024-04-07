@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -29,18 +29,19 @@
 #include "apu/apu.h"
 
 struct lfo {
-  int8_t period;
-  enum {
-    SINE = 1, RAMP_DOWN, RAMP_UP, SQUARE, TRIANGLE
-  } waveform;
+    int8_t period;
 
-  // Used by LFO logic:
-  int8_t value;
-  uint8_t counter;
-  int8_t position;
+    enum {
+        SINE = 1, RAMP_DOWN, RAMP_UP, SQUARE, TRIANGLE
+    } waveform;
+
+    // Used by LFO logic:
+    int8_t value;
+    uint8_t counter;
+    int8_t position;
 };
-
-extern struct lfo lfo[3];
 
 void lfo_update(struct lfo* lfo);
 void lfo_update_handler(void);
+
+extern struct lfo lfo[3];

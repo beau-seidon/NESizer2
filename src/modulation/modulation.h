@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -27,6 +27,9 @@
 
 #pragma once
 
+void mod_calculate(void);
+void mod_apply(void);
+
 extern int8_t mod_lfo_modmatrix[4][3];
 extern int8_t mod_lfo_vol[3];
 extern int8_t mod_detune[3];
@@ -36,8 +39,3 @@ extern int8_t mod_pitchbend[3];
 extern uint8_t noise_period;
 extern int8_t mod_octave[3];
 extern int8_t mod_pwm;
-
-void mod_calculate(void);
-void mod_apply(void);
-//int8_t get_envmod(uint8_t chn);
-uint16_t mod_dc_to_T(uint16_t, int16_t);

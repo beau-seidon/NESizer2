@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -32,26 +32,26 @@ enum env_state {ATTACK, DECAY, SUSTAIN, RELEASE, OFF};
 
 struct envelope {
 /* Envelope settings:
-   
+
    attack, decay, release times
-   sustain level 
+   sustain level
    gate state (on or off)
    retrigger flag (retrigger the envelope when restarted)
 */
 
-  int8_t attack;
-  int8_t decay;
-  int8_t sustain;
-  int8_t release;
+    int8_t attack;
+    int8_t decay;
+    int8_t sustain;
+    int8_t release;
 
-  uint8_t gate;
-  uint8_t retrigger;
+    uint8_t gate;
+    uint8_t retrigger;
 
-  // The following are internal:
-  uint8_t value;
-  enum env_state state;
-  uint8_t counter;
-  uint8_t gate_prev;
+// The following are internal:
+    uint8_t value;
+    enum env_state state;
+    uint8_t counter;
+    uint8_t gate_prev;
 };
 
 void envelope_update(struct envelope *env);

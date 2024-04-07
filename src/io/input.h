@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -28,6 +28,6 @@
 
 #include <stdint.h>
 
-extern uint8_t input[3];
-
 void input_refresh(void);
+
+extern uint8_t input[3];

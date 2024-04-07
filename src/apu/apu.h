@@ -37,7 +37,7 @@
 #define CHN_DMC 4
 
 struct square {
-    int8_t duty;             // 2-bit integer
+    int8_t duty;              // 2-bit integer
     uint8_t volume;
     uint16_t period;
 
@@ -57,7 +57,7 @@ struct triangle {
 };
 
 struct noise {
-    int8_t loop;             // BOOL: Loop mode (pitched noise)
+    int8_t loop;              // BOOL: Loop mode (pitched noise)
     uint8_t volume : 4;
     uint8_t period : 4;
 
@@ -75,25 +75,22 @@ struct dmc {
     struct sample sample;
 };
 
-extern struct square sq1, sq2;
-extern struct triangle tri;
-extern struct noise noise;
-extern struct dmc dmc;
-
-/* Functions */
-
-void sq_setup(uint8_t, struct square*);
-void sq_update(struct square*);
+void sq_setup(uint8_t n, struct square* sq);
+void sq_update(struct square* sq);
 void tri_setup(void);
 void tri_update(void);
 void noise_setup(void);
 void noise_update(void);
 void dmc_setup(void);
-void dmc_update(void);
 void dmc_update_sample(void);
-void apu_refresh_channel(uint8_t);
+void apu_refresh_channel(uint8_t ch_number);
 void apu_refresh_all(void);
-void apu_update_channel(uint8_t);
+void apu_update_channel(uint8_t chn);
 void apu_update_handler(void);
 void apu_dmc_update_handler(void);
 void apu_setup(void);
+
+extern struct square sq1, sq2;
+extern struct triangle tri;
+extern struct noise noise;
+extern struct dmc dmc;

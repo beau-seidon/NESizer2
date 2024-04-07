@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -30,7 +30,6 @@
 
 void ui_sequencer_setup(void);
 void sequencer(void);
-void sequence_handler(void);
 
 extern uint8_t sequencer_leds[6];
 extern uint8_t sequencer_midi_note;

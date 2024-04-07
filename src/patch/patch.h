@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -31,9 +31,8 @@
 #define PATCH_MIN 0
 #define PATCH_MAX 99
 
-extern const uint16_t PATCH_MEMORY_END;
-
 void patch_save(uint8_t num);
 void patch_load(uint8_t num);
 void patch_initialize(uint8_t num);
-void patch_clean(void);
+
+extern const uint16_t PATCH_MEMORY_END;

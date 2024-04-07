@@ -22,6 +22,7 @@
 
 */
 
+
 #pragma once
 
 struct sequencer_note {
@@ -36,13 +37,6 @@ struct sequencer_pattern {
     struct sequencer_note notes[5][16];
 };
 
-extern struct sequencer_pattern sequencer_pattern;
-extern uint8_t sequencer_cur_position;
-extern uint8_t sequencer_tempo_count;
-extern int8_t sequencer_ext_clock;
-extern uint8_t sequencer_midi_note;
-extern int8_t sequencer_midi_out_channels[5];
-
 void sequencer_setup(void);
 void sequencer_handler(void);
 void sequencer_midi_clock(void);
@@ -55,3 +49,10 @@ void sequencer_continue(void);
 void sequencer_single_note(uint8_t chn);
 void sequencer_pattern_init(void);
 void sequencer_clear_sequence(void);
+
+extern struct sequencer_pattern sequencer_pattern;
+extern uint8_t sequencer_cur_position;
+extern uint8_t sequencer_tempo_count;
+extern int8_t sequencer_ext_clock;
+extern uint8_t sequencer_midi_note;
+extern int8_t sequencer_midi_out_channels[5];

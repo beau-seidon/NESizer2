@@ -40,10 +40,6 @@
 #define LEDS_7SEG_DOT 17
 #define LEDS_7SEG_MINUS 18
 
-// Global variables
-extern uint8_t leds[5];
-extern uint8_t row_mirror;
-
 // Functions
 void leds_refresh(void);
 void leds_7seg_set(uint8_t row, uint8_t value);
@@ -54,3 +50,7 @@ void leds_7seg_dot_off(uint8_t row);
 void leds_7seg_clear(uint8_t row);
 void leds_7seg_note_set(uint8_t row1, uint8_t row2, uint8_t note);
 void leds_7seg_minus(void);
+
+// Global variables
+extern uint8_t leds[5];
+extern uint8_t row_mirror;

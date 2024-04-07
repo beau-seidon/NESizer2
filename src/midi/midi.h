@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -25,6 +25,7 @@
 
 
 #pragma once
+
 #include <stdint.h>
 
 #define MIDI_NOTE_LIST_MAX 8
@@ -42,16 +43,14 @@ enum sysex_data_format {
 };
 
 struct midi_channel {
-  uint8_t note_list[MIDI_NOTE_LIST_MAX];
-  uint8_t note_list_length;
-  uint8_t channel;
-  uint8_t listeners_count;
-  uint8_t listeners;
+    uint8_t note_list[MIDI_NOTE_LIST_MAX];
+    uint8_t note_list_length;
+    uint8_t channel;
+    uint8_t listeners_count;
+    uint8_t listeners;
 };
+
+void midi_handler(void);
 
 extern uint8_t midi_transfer_progress;
 extern uint8_t midi_notes[5];
-
-void midi_channel_subscribe(uint8_t midi_chn, uint8_t chn);
-void midi_channel_unsubscribe(uint8_t midi_chn, uint8_t chn);
-void midi_handler(void);

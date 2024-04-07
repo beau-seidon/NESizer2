@@ -1,5 +1,5 @@
 /*
-  Copyright 2014-2015 Johan Fjeldtvedt 
+  Copyright 2014-2015 Johan Fjeldtvedt
 
   This file is part of NESIZER.
 
@@ -25,6 +25,7 @@
 
 
 #pragma once
+
 #include <stdint.h>
 
 void settings(void);
