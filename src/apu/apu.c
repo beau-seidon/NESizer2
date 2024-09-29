@@ -241,17 +241,21 @@ void dmc_setup(void)
 
 void dmc_update_sample_raw(void)
 {
-    dmc.data = sample_read_byte(&dmc.sample);
-
-    io_register_write(DMC_RAW, dmc.data);
-
-    if (dmc.sample.bytes_done == dmc.sample.size) {
-        sample_reset(&dmc.sample);
-
-        if (!dmc.sample_loop)
-            dmc.sample_enabled = 0;
+    if (dmc.sample_loop == 2) {
+        dmc.data = pitched_sample_read_byte(&dmc.sample);
     }
 
+    else {
+        dmc.data = sample_read_byte(&dmc.sample);
+        if (dmc.sample.bytes_done == dmc.sample.size) {
+            sample_reset(&dmc.sample);
+
+            if (!dmc.sample_loop)
+                dmc.sample_enabled = 0;
+        }
+    }
+
+    io_register_write(DMC_RAW, dmc.data);
 }
 
 void dmc_update_sample(void)

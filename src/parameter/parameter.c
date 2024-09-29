@@ -82,7 +82,8 @@ const struct parameter parameters[] PROGMEM = {
     [NOISE_HALF] = {&assigner_upper_mask[3], KBD_HALF, 0, 1, 1},
 
     [DMC_ENABLED] = {&assigner_enabled[4], BOOL, 0, 1, 0},
-    [DMC_SAMPLE_LOOP] = {&dmc.sample_loop, RANGE, 0, 1, 0},
+    [DMC_SAMPLE_LOOP] = {&dmc.sample_loop, RANGE, 0, 2, 0},
+    [DMC_PITCHED_SAMPLE] = {&dmc.pitched_sample_number, RANGE, 0, 99, 0},
 
     [ENV1_ATTACK] = {&env[0].attack, RANGE, 0, 99, 0},
     [ENV1_DECAY] = {&env[0].decay, RANGE, 0, 99, 0},

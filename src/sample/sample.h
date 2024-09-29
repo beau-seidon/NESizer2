@@ -52,6 +52,7 @@ void sample_new(struct sample *sample, uint8_t index);
 void sample_load(struct sample *sample, uint8_t index);
 void sample_reset(struct sample *sample);
 uint8_t sample_read_byte(struct sample *sample);
+uint8_t pitched_sample_read_byte(struct sample *sample);
 void sample_delete(uint8_t index);
 uint8_t sample_occupied(uint8_t index);
 void sample_write_serial(struct sample *sample, uint8_t value);

@@ -67,8 +67,9 @@ struct noise {
 };
 
 struct dmc {
-    int8_t sample_loop;       // BOOL: Wether or not sample is automatically looped
+    int8_t sample_loop;       // 0 = one-shot, 1 = loop full sample, 2 = pitched sample looping
     uint8_t sample_number;
+    int8_t pitched_sample_number;
     uint8_t sample_enabled : 1;
     uint8_t data : 7;
 

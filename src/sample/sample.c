@@ -26,6 +26,8 @@
 
 #include "sample.h"
 #include "io/memory.h"
+#include "apu/apu.h"
+#include "phase_accum.h"
 #include <stdint.h>
 
 #define NUM_SAMPLES 100
@@ -96,6 +98,30 @@ uint8_t sample_read_byte(struct sample *sample)
     }
 
     sample->bytes_done++;
+
+    return value;
+}
+
+uint8_t pitched_sample_read_byte(struct sample *sample)
+{
+    uint8_t value = read_from_block(&sample->mem_ctx, sample->current_block, sample->current_position);
+
+    // the problem is in here somewhere...
+    phase_accumulator += phase_increment;
+    uint16_t phase = phase_accumulator >> 12;  // fiddling with this has got it closest to working.
+    sample->current_position = phase;
+    sample->bytes_done = phase;
+    // step size is wrong, getting buffer over/under flow
+
+    if (sample->current_position >= BLOCK_SIZE) {
+        sample->current_position %= BLOCK_SIZE;
+        sample->current_block = get_next_block(next_block_index(sample->current_block));
+    }
+
+    if (sample->bytes_done >= sample->size) {
+        sample->bytes_done %= sample->size;
+        sample->current_block = sample->first_block;
+    }
 
     return value;
 }

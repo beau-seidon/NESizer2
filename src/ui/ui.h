@@ -43,8 +43,8 @@
 #define BTN_PAGE2 19 // 3
 #define BTN_SEQUENCER 20 // 4
 #define BTN_SETTINGS 21 // 5
-#define BTN_UP 22 // 6
-#define BTN_DOWN 23 // 7
+#define BTN_UP 23 // 6
+#define BTN_DOWN 22 // 7
 
 #define button_row(BTN) ((BTN) / 8)
 #define button_col(BTN) ((BTN) % 8)

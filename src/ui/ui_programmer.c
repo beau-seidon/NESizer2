@@ -145,7 +145,7 @@ const enum parameter_id dmc_parameters[] PROGMEM = {
     0xFF,
 
     DMC_SAMPLE_LOOP,
-    0xFF,
+    DMC_PITCHED_SAMPLE,
     0xFF,
     0xFF,
     0xFF,

@@ -88,6 +88,7 @@ enum parameter_id {
 
     DMC_ENABLED,
     DMC_SAMPLE_LOOP,
+    DMC_PITCHED_SAMPLE,
 
     ENV1_ATTACK,
     ENV1_DECAY,

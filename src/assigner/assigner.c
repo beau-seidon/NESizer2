@@ -35,6 +35,7 @@
 #include "modulation/periods.h"
 #include "midi/midi.h"
 #include "settings/settings.h"
+#include "sample/phase_accum.h"
 
 enum assigner_mode assigner_lower_mode = MONO;
 enum assigner_mode assigner_upper_mode = MONO;
@@ -114,7 +115,7 @@ uint8_t assigner_midi_channel_get(uint8_t chn)
 }
 
 uint8_t assigner_channel_get(uint8_t midi_channel)
-{   
+{
     for (uint8_t i = 0; i < 5; i++) {
         if (midi_channels[i] == midi_channel) {
             return i;
@@ -265,57 +266,69 @@ void play_note(uint8_t channel, uint8_t midi_note)
     assigned_notes[channel] = midi_note;
 
     switch (channel) {
-    case CHN_SQ1:
-        env[0].gate = 1;
-        portamento_target_notes[0] = note;
-        break;
-
-    case CHN_SQ2:
-        env[1].gate = 1;
-        portamento_target_notes[1] = note;
-        break;
-
-    case CHN_TRI:
-        tri.silenced = 0;
-        portamento_target_notes[2] = note;
-        break;
-
-    case CHN_NOISE:
-        env[2].gate = 1;
-        noise_period = note - 24;
-        break;
-
-    case CHN_DMC:
-        if (sample_occupied(midi_note - SAMPLE_MIDI_LOW_INDEX)) {
-            sample_load(&dmc.sample, midi_note - SAMPLE_MIDI_LOW_INDEX);
-            if (dmc.sample.size != 0)
-                dmc.sample_enabled = 1;
+        case CHN_SQ1:
+            env[0].gate = 1;
+            portamento_target_notes[0] = note;
             break;
-        }
+
+        case CHN_SQ2:
+            env[1].gate = 1;
+            portamento_target_notes[1] = note;
+            break;
+
+        case CHN_TRI:
+            tri.silenced = 0;
+            portamento_target_notes[2] = note;
+            break;
+
+        case CHN_NOISE:
+            env[2].gate = 1;
+            noise_period = note - 24;
+            break;
+
+        case CHN_DMC:
+            if (dmc.sample_loop == 2) {
+                if (sample_occupied(dmc.pitched_sample_number)) {
+                    sample_load(&dmc.sample, dmc.pitched_sample_number);
+                    set_phase_increment(midi_note);
+
+                    if (dmc.sample.size != 0) dmc.sample_enabled = 1;
+                }
+            }
+
+            else {
+                if (sample_occupied(midi_note - SAMPLE_MIDI_LOW_INDEX)) {
+                    sample_load(&dmc.sample, midi_note - SAMPLE_MIDI_LOW_INDEX);
+
+                    if (dmc.sample.size != 0) dmc.sample_enabled = 1;
+                }
+            }
+            break;
     }
 }
 
 void stop_note(uint8_t channel)
 {
     switch (channel) {
-    case CHN_SQ1:
-        env[0].gate = 0;
-        break;
+        case CHN_SQ1:
+            env[0].gate = 0;
+            break;
 
-    case CHN_SQ2:
-        env[1].gate = 0;
-        break;
+        case CHN_SQ2:
+            env[1].gate = 0;
+            break;
 
-    case CHN_TRI:
-        tri.silenced = 1;
-        break;
+        case CHN_TRI:
+            tri.silenced = 1;
+            break;
 
-    case CHN_NOISE:
-        env[2].gate = 0;
-        break;
+        case CHN_NOISE:
+            env[2].gate = 0;
+            break;
 
-    case CHN_DMC:
-        dmc.sample_enabled = 0;
+        case CHN_DMC:
+            dmc.sample_enabled = 0;
+            break;
     }
 
     assigned_notes[channel] = 0;
